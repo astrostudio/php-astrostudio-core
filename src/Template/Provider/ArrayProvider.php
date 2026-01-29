@@ -2,7 +2,7 @@
 namespace AstroStudio\Core\Template\Provider;
 
 /**
- * @template T
+ * @template   T
  * @implements ProviderInterface<T>
  */
 class ArrayProvider implements ProviderInterface
@@ -15,7 +15,8 @@ class ArrayProvider implements ProviderInterface
     /**
      * @param array<string,T> $values
      */
-    public function __construct(array $values = []){
+    public function __construct(array $values = [])
+    {
         $this->values = $values;
     }
 

@@ -1,39 +1,40 @@
 <?php
-namespace Base\Cache;
+namespace AstroStudio\Core\Cache;
 
-class FileCache extends BaseCache
+class FileCache extends AbstractCache
 {
-    protected $_directory;
+    protected string $directory;
 
-    public function __construct(string $directory=''){
-        $this->_directory=$directory;
-    }
-
-    public function path(string $key):string
+    public function __construct(string $directory='')
     {
-        return($this->_directory.DIRECTORY_SEPARATOR.$key);
+        $this->directory=$directory;
     }
 
-    public function has(string $key): bool
+    public function path(string $key, array $options = []):string
     {
-        return(file_exists($this->path($key)));
+        return $this->directory.DIRECTORY_SEPARATOR.$key;
     }
 
-    public function get(string $key)
+    public function has(string $key, array $options = []): bool
+    {
+        return file_exists($this->path($key));
+    }
+
+    public function get(string $key, array $options = []): mixed
     {
         $s=file_get_contents($this->path($key));
 
-        return(unserialize($s));
+        return unserialize($s);
     }
 
-    public function set(string $key, $value)
+    public function set(string $key, mixed $value, array $options = []): void
     {
         $s=serialize($value);
 
-        file_put_contents($this->path($key),$s);
+        file_put_contents($this->path($key), $s);
     }
 
-    public function remove(string $key)
+    public function remove(string $key, array $options = []): void
     {
         unlink($this->path($key));
     }

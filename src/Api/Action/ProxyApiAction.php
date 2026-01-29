@@ -10,13 +10,14 @@ class ProxyApiAction extends AbstractApiAction
     protected ApiActionInterface $action;
     protected array $options;
 
-    public function __construct(ApiActionInterface $action,array $options=[]){
+    public function __construct(ApiActionInterface $action,array $options=[])
+    {
         $this->action=$action;
         $this->options=$options;
     }
 
     public function execute(ApiQueryInterface $query,array $options=[]): mixed
     {
-        return $this->action->execute($query,Hash::extend($this->options,$options));
+        return $this->action->execute($query, Hash::extend($this->options, $options));
     }
 }

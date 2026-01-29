@@ -4,7 +4,7 @@ namespace AstroStudio\Core\Template\Builder;
 use AstroStudio\Core\Template\Creator\CreatorInterface;
 
 /**
- * @template T
+ * @template   T
  * @implements BuilderInterface<T>
  */
 class CreatorBuilder implements BuilderInterface
@@ -17,13 +17,14 @@ class CreatorBuilder implements BuilderInterface
     /**
      * @param array<string,CreatorInterface<T>> $creators
      */
-    public function __construct(array $creators = []){
+    public function __construct(array $creators = [])
+    {
         $this->creators = $creators;
     }
 
     public function get(string $name, array $data = []): mixed
     {
-        if(!array_key_exists($name, $this->creators)){
+        if(!array_key_exists($name, $this->creators)) {
             return null;
         }
 

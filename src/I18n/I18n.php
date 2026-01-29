@@ -12,7 +12,7 @@ class I18n
 
     static public function getInstance(): I18nInterface
     {
-        if(!self::$instance){
+        if(!self::$instance) {
             self::$instance = new IdleI18n();
         }
 
@@ -26,7 +26,7 @@ class I18n
 
     static public function getLocalizer(): I18nLocalizerInterface
     {
-        if(!self::$localizer){
+        if(!self::$localizer) {
             self::$localizer = new BasicI18nLocalizer(new BasicI18nLanguage('pl'));
         }
 
@@ -40,7 +40,7 @@ class I18n
 
     static public function get(string $alias, array $values = [], ?I18nLanguageInterface $language = null, array $options = []): string
     {
-        return self::getInstance()->get($language??self::getLocalizer()->get(),$alias, $values, $options);
+        return self::getInstance()->get($language??self::getLocalizer()->get(), $alias, $values, $options);
     }
 
     static public function format(mixed $value, string $type, ?I18nLanguageInterface $language = null, array $options = []): string

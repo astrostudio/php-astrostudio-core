@@ -7,7 +7,7 @@ namespace AstroStudio\Core\Template\Getter;
 interface GetterInterface
 {
     /**
-     * @param T      $value
+     * @param T          $value
      * @param string|int $key
      *
      * @return bool
@@ -15,7 +15,7 @@ interface GetterInterface
     public function has(mixed $value, string|int $key): bool;
 
     /**
-     * @param T     $value
+     * @param T          $value
      * @param string|int $key
      *
      * @return mixed

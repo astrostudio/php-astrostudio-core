@@ -2,7 +2,7 @@
 namespace AstroStudio\Core\Template\Builder;
 
 /**
- * @template T
+ * @template   T
  * @implements BuilderInterface<T>
  */
 class CallableBuilder implements BuilderInterface
@@ -15,7 +15,8 @@ class CallableBuilder implements BuilderInterface
     /**
      * @param callable(string, array): T $callable
      */
-    public function __construct(callable $callable){
+    public function __construct(callable $callable)
+    {
         $this->callable = $callable;
     }
 

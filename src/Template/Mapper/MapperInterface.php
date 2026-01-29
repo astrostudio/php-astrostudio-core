@@ -7,7 +7,7 @@ namespace AstroStudio\Core\Template\Mapper;
 interface MapperInterface
 {
     /**
-     * @param T $value
+     * @param T       $value
      * @param mixed[] $options
      *
      * @return mixed[]

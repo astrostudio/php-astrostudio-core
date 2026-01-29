@@ -12,7 +12,8 @@ class BaseAlias extends AbstractAlias
 
     protected array $values = [];
 
-    public function __construct(array $values = []){
+    public function __construct(array $values = [])
+    {
         $this->values = $values;
     }
 

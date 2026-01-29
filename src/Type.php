@@ -147,7 +147,7 @@ class Type
      */
     static public function isKey(mixed $value = null): bool
     {
-        return self::is($value, [self::INTEGER,self::STRING,self::BOOLEAN]);
+        return self::is($value, [self::INTEGER,self::STRING]);
     }
 
     /**

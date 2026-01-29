@@ -2,7 +2,7 @@
 namespace AstroStudio\Core\Template\Supplier;
 
 /**
- * @template T
+ * @template   T
  * @implements SupplierInterface<T>
  */
 class ValueSupplier implements SupplierInterface
@@ -15,7 +15,8 @@ class ValueSupplier implements SupplierInterface
     /**
      * @param T $value
      */
-    public function __construct(mixed $value){
+    public function __construct(mixed $value)
+    {
         $this->value = $value;
     }
 

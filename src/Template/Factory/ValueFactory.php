@@ -2,7 +2,7 @@
 namespace AstroStudio\Core\Template\Factory;
 
 /**
- * @template T
+ * @template   T
  * @implements FactoryInterface<T>
  */
 class ValueFactory implements FactoryInterface
@@ -15,7 +15,8 @@ class ValueFactory implements FactoryInterface
     /**
      * @param T $value
      */
-    public function __construct(mixed $value){
+    public function __construct(mixed $value)
+    {
         $this->value = $value;
     }
 

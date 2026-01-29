@@ -10,7 +10,7 @@ abstract class AbstractI18nLanguage extends AbstractFrame implements I18nLanguag
     {
         $key = $this->getName();
 
-        if(!is_null($country = $this->getCountry())){
+        if(!is_null($country = $this->getCountry())) {
             $key .= self::SEPARATOR.$country;
         }
 

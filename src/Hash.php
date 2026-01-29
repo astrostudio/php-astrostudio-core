@@ -251,11 +251,11 @@ class Hash
     }
 
     /**
-     * @param mixed[]         $hash
+     * @param mixed[]                 $hash
      * @param (string|int)|string|int $path
-     * @param mixed|null      $value
-     * @param bool            $notEmpty
-     * @param string          $separator
+     * @param mixed|null              $value
+     * @param bool                    $notEmpty
+     * @param string                  $separator
      *
      * @return void
      */

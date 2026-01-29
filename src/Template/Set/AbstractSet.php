@@ -32,19 +32,21 @@ abstract class AbstractSet implements SetInterface
     {
         $map = [];
 
-        $processor = new CallableProcessor(function(mixed $value, array $options = []) use ($mapper,&$map){
-            $m = $mapper->map($value, $options);
+        $processor = new CallableProcessor(
+            function (mixed $value, array $options = []) use ($mapper,&$map) {
+                $m = $mapper->map($value, $options);
 
-            foreach($m as $k=>$v){
-                if(is_int($k)){
-                    $map[] = $v;
+                foreach($m as $k=>$v){
+                    if(is_int($k)) {
+                        $map[] = $v;
 
-                    continue;
+                        continue;
+                    }
+
+                    $map[$k] = $v;
                 }
-
-                $map[$k] = $v;
             }
-        });
+        );
 
         $this->each($processor, $options);
 

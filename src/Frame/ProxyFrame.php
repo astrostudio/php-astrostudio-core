@@ -5,7 +5,8 @@ class ProxyFrame extends AbstractFrame
 {
     protected FrameInterface $frame;
 
-    public function __construct(FrameInterface $frame){
+    public function __construct(FrameInterface $frame)
+    {
         $this->frame = $frame;
     }
 

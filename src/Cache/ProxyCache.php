@@ -1,32 +1,36 @@
 <?php
-namespace Base\Cache;
+namespace AstroStudio\Core\Cache;
 
-class ProxyCache extends BaseCache
+use AstroStudio\Core\Hash;
+
+class ProxyCache extends AbstractCache
 {
-    protected $_cache;
+    protected CacheInterface $cache;
+    protected array $options;
 
-    public function __construct(CacheInterface $cache=null){
-        $this->_cache=$cache;
-    }
-
-    public function has(string $key):bool
+    public function __construct(CacheInterface $cache, array $options = [])
     {
-        return($this->_cache?$this->_cache->has($key):false);
+        $this->cache=$cache;
+        $this->options = $options;
     }
 
-    public function get(string $key){
-        return($this->_cache?$this->_cache->get($key):null);
+    public function has(string $key, array $options = []):bool
+    {
+        return $this->cache->has($key, Hash::extend($this->options, $options));
     }
 
-    public function set(string $key,$value){
-        if($this->_cache){
-            $this->_cache->set($key,$value);
-        }
+    public function get(string $key, array $options = []): mixed
+    {
+        return $this->cache->get($key, Hash::extend($this->options, $options));
     }
 
-    public function remove(string $key){
-        if($this->_cache){
-            $this->_cache->remove($key);
-        }
+    public function set(string $key,mixed $value, array $options = []): void
+    {
+        $this->cache->set($key, $value, Hash::extend($this->options, $options));
+    }
+
+    public function remove(string $key, array $options = []): void
+    {
+        $this->cache->remove($key, Hash::extend($this->options, $options));
     }
 }

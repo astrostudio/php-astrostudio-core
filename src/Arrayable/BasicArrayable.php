@@ -5,7 +5,8 @@ class BasicArrayable extends AbstractArrayable
 {
     protected array $array;
 
-    public function __construct(array $array = []){
+    public function __construct(array $array = [])
+    {
         $this->array = $array;
     }
 

@@ -2,7 +2,7 @@
 namespace AstroStudio\Core\Template\Supplier;
 
 /**
- * @template T
+ * @template   T
  * @implements SupplierInterface<T>
  */
 class CallableSupplier implements SupplierInterface
@@ -19,9 +19,10 @@ class CallableSupplier implements SupplierInterface
 
     /**
      * @param callable():T $callable
-     * @param mixed[]  $args
+     * @param mixed[]      $args
      */
-    public function __construct(callable $callable, array $args = []){
+    public function __construct(callable $callable, array $args = [])
+    {
         $this->callable = $callable;
         $this->args = $args;
     }

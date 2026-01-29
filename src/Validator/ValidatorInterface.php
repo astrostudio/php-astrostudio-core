@@ -6,7 +6,7 @@ use AstroStudio\Core\Alias\AliasInterface;
 interface ValidatorInterface
 {
     /**
-     * @param mixed $value
+     * @param mixed   $value
      * @param mixed[] $options
      *
      * @return AliasInterface[]

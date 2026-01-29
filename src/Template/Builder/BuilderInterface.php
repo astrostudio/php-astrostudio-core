@@ -7,8 +7,8 @@ namespace AstroStudio\Core\Template\Builder;
 interface BuilderInterface
 {
     /**
-     * @param string $name
-     * @param mixed[]  $data
+     * @param string  $name
+     * @param mixed[] $data
      *
      * @return T|null
      */

@@ -13,7 +13,8 @@ class AliasMessage extends BaseAlias implements MessageInterface
         return static::TEMPLATE??static::getName();
     }
 
-    public function __construct(array $values = []){
+    public function __construct(array $values = [])
+    {
         parent::__construct($values);
     }
 
@@ -24,8 +25,10 @@ class AliasMessage extends BaseAlias implements MessageInterface
 
     public function jsonSerialize(): mixed
     {
-        return array_merge(parent::jsonSerialize(),[
+        return array_merge(
+            parent::jsonSerialize(), [
             'body'=>$this->getBody()
-        ]);
+            ]
+        );
     }
 }

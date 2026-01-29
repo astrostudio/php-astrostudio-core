@@ -5,7 +5,8 @@ class BasicMessage extends AbstractMessage
 {
     protected string $body;
 
-    public function __construct(string $body){
+    public function __construct(string $body)
+    {
         $this->body = $body;
     }
 

@@ -26,7 +26,7 @@ interface SetInterface
 
     /**
      * @param MapperInterface<T> $mapper
-     * @param mixed[]           $options
+     * @param mixed[]            $options
      *
      * @return mixed[]
      */

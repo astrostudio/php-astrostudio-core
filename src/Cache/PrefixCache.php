@@ -1,30 +1,34 @@
 <?php
-namespace Base\Cache;
+namespace AstroStudio\Core\Cache;
 
 class PrefixCache extends ProxyCache
 {
-    protected $_prefix;
+    protected string $prefix;
 
-    public function __construct(string $prefix,CacheInterface $cache=null){
-        parent::__construct($cache);
-
-        $this->_prefix=$prefix;
-    }
-
-    public function has(string $key):bool
+    public function __construct(string $prefix,CacheInterface $cache, array $options = [])
     {
-        return(parent::has($this->_prefix.$key));
+        parent::__construct($cache, $options);
+
+        $this->prefix=$prefix;
     }
 
-    public function get(string $key){
-        return(parent::get($this->_prefix.$key));
+    public function has(string $key, array $options = []):bool
+    {
+        return parent::has($this->prefix.$key, $options);
     }
 
-    public function set(string $key,$value){
-        parent::set($this->_prefix.$key,$value);
+    public function get(string $key, array $options = []): mixed
+    {
+        return parent::get($this->prefix.$key, $options);
     }
 
-    public function remove(string $key){
-        parent::remove($this->_prefix.$key);
+    public function set(string $key,mixed $value, array $options = []): void
+    {
+        parent::set($this->prefix.$key, $value, $options);
+    }
+
+    public function remove(string $key, array $options = []): void
+    {
+        parent::remove($this->prefix.$key, $options);
     }
 }

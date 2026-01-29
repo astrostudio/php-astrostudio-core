@@ -2,7 +2,7 @@
 namespace AstroStudio\Core\Template\Provider;
 
 /**
- * @template T
+ * @template   T
  * @implements ProviderInterface<T>
  */
 class StackProvider implements ProviderInterface
@@ -17,10 +17,11 @@ class StackProvider implements ProviderInterface
     protected ?array $keys;
 
     /**
-     * @param ProviderInterface<T>[]      $providers
-     * @param mixed[] $keys
+     * @param ProviderInterface<T>[] $providers
+     * @param mixed[]                $keys
      */
-    public function __construct(array $providers = [], ?array $keys = null){
+    public function __construct(array $providers = [], ?array $keys = null)
+    {
         $this->providers = $providers;
         $this->keys = $keys;
     }
@@ -30,11 +31,11 @@ class StackProvider implements ProviderInterface
         $keys = $this->keys??array_keys($this->providers);
 
         foreach($keys as $key){
-            if(!array_key_exists($key, $this->providers)){
+            if(!array_key_exists($key, $this->providers)) {
                 continue;
             }
 
-            if(!is_null($value = $this->providers[$key]->get($name))){
+            if(!is_null($value = $this->providers[$key]->get($name))) {
                 return $value;
             }
         }

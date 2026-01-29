@@ -14,16 +14,16 @@ trait ArrayFrameTrait
 
     public function get(array|string|null $key=null, mixed $value = null): mixed
     {
-        if(is_null($key)){
+        if(is_null($key)) {
             return $this->values;
         }
 
-        if(is_array($key)){
+        if(is_array($key)) {
             $values = [];
 
             foreach($key as $k=>$v){
-                if(is_int($k)){
-                    if(!array_key_exists($v, $this->values)){
+                if(is_int($k)) {
+                    if(!array_key_exists($v, $this->values)) {
                         continue;
                     }
 
@@ -32,7 +32,7 @@ trait ArrayFrameTrait
                     continue;
                 }
 
-                if(!array_key_exists($k, $this->values)){
+                if(!array_key_exists($k, $this->values)) {
                     $values[$k]=$v;
 
                     continue;
@@ -49,7 +49,7 @@ trait ArrayFrameTrait
 
     public function set(array|string $key = null, mixed $value = null): void
     {
-        if(is_array($key)){
+        if(is_array($key)) {
             foreach($key as $k=>$v){
                 $this->values[$k] = $v;
             }
@@ -62,13 +62,13 @@ trait ArrayFrameTrait
 
     public function remove(array|string|null $key = null): void
     {
-        if(is_null($key)){
+        if(is_null($key)) {
             $this->values = [];
 
             return;
         }
 
-        if(is_array($key)){
+        if(is_array($key)) {
             foreach($key as $k){
                 unset($this->values[$k]);
             }

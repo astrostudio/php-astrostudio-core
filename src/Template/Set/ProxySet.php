@@ -6,7 +6,7 @@ use AstroStudio\Core\Template\Processor\ProcessorInterface;
 
 /**
  * @template T
- * @extends AbstractSet<T>
+ * @extends  AbstractSet<T>
  */
 class ProxySet extends AbstractSet
 {
@@ -21,9 +21,10 @@ class ProxySet extends AbstractSet
 
     /**
      * @param SetInterface<T> $set
-     * @param mixed[] $options
+     * @param mixed[]         $options
      */
-    public function __construct(SetInterface $set, array $options = []){
+    public function __construct(SetInterface $set, array $options = [])
+    {
         $this->set = $set;
         $this->options = $options;
     }

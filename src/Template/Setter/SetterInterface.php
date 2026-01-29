@@ -7,7 +7,7 @@ namespace AstroStudio\Core\Template\Setter;
 interface SetterInterface
 {
     /**
-     * @param T      $value
+     * @param T          $value
      * @param string|int $key
      * @param mixed      $subValue
      *
@@ -16,7 +16,7 @@ interface SetterInterface
     public function set(mixed $value, string|int $key, mixed $subValue): void;
 
     /**
-     * @param T      $value
+     * @param T          $value
      * @param string|int $key
      *
      * @return void

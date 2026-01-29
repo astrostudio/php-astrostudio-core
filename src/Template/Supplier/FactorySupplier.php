@@ -4,7 +4,7 @@ namespace AstroStudio\Core\Template\Supplier;
 use AstroStudio\Core\Template\Factory\FactoryInterface;
 
 /**
- * @template T
+ * @template   T
  * @implements SupplierInterface<T>
  */
 class FactorySupplier implements SupplierInterface
@@ -17,7 +17,8 @@ class FactorySupplier implements SupplierInterface
     /**
      * @param FactoryInterface<T> $factory
      */
-    public function __construct(FactoryInterface $factory){
+    public function __construct(FactoryInterface $factory)
+    {
         $this->factory = $factory;
     }
 

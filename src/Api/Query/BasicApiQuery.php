@@ -7,21 +7,22 @@ class BasicApiQuery extends AbstractApiQuery
 {
     protected array $data;
 
-    public function __construct(array $data=[]){
+    public function __construct(array $data=[])
+    {
         $this->data=$data;
     }
 
     public function get(array|string|null $name=null, mixed $value = null): mixed
     {
-        if(is_null($name)){
+        if(is_null($name)) {
             return $this->data;
         }
 
-        if(is_array($name)){
+        if(is_array($name)) {
             $data = [];
 
             foreach($name as $n=>$v){
-                if(is_int($n)){
+                if(is_int($n)) {
                     Hash::attach($data, $v, $this->data[$v]??$value);
 
                     continue;

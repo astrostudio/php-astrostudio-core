@@ -17,16 +17,16 @@ class Option
      */
     static public function get(array $options, string $key, bool $required = false, mixed $value = null, ?ValidatorInterface $validator = null): mixed
     {
-        if(!array_key_exists($key, $options)){
-            if($required){
+        if(!array_key_exists($key, $options)) {
+            if($required) {
                 throw new InvalidArgumentException('Option required');
             }
 
             return $value;
         }
 
-        if($validator){
-            if(!empty($validator->validate($options[$key]))){
+        if($validator) {
+            if(!empty($validator->validate($options[$key]))) {
                 throw new InvalidArgumentException('Option invalid');
             }
         }

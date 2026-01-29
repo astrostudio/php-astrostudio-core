@@ -5,7 +5,8 @@ class BasicFrame extends AbstractFrame
 {
     use ArrayFrameTrait;
 
-    public function __construct(array $values = []){
+    public function __construct(array $values = [])
+    {
         $this->set($values);
     }
 }

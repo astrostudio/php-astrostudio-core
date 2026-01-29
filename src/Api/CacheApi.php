@@ -7,7 +7,8 @@ class CacheApi extends ProxyApi
 {
     protected CacheInterface $cache;
 
-    public function __construct(ApiInterface $api,CacheInterface $cache){
+    public function __construct(ApiInterface $api,CacheInterface $cache)
+    {
         parent::__construct($api);
 
         $this->cache=$cache;
@@ -15,14 +16,14 @@ class CacheApi extends ProxyApi
 
     public function execute(string $name,ApiQueryInterface $query, array $options = []): mixed
     {
-        $key=crc32(json_encode([$name,$query,$options]));
+        $key=strval(crc32(json_encode([$name,$query,$options])));
 
         $result=$this->cache->get($key);
 
-        if(!is_null($result)){
-            $result=parent::execute($name,$query,$options);
+        if(!is_null($result)) {
+            $result=parent::execute($name, $query, $options);
 
-            $this->cache->set($key,$result);
+            $this->cache->set($key, $result);
         }
 
         return $result;

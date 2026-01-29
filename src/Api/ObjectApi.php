@@ -5,11 +5,12 @@ class ObjectApi extends AbstractApi
 {
     protected array $methods=[];
 
-    public function __construct(array $methods=[]){
-        $this->_methods=[];
+    public function __construct(array $methods=[])
+    {
+        $this->methods=[];
 
         foreach($methods as $key=>$value){
-            if(is_int($key)){
+            if(is_int($key)) {
                 $this->methods[$value]=$value;
             }
             else {
@@ -18,17 +19,18 @@ class ObjectApi extends AbstractApi
         }
     }
 
-    public function execute(string $name,ApiQueryInterface $query,array $options=[]): mixed{
-        if(empty($this->methods[$name])){
-            throw new ApiException($this,'ObjectApi::execute(): No method "'.$name.'"');
+    public function execute(string $name,ApiQueryInterface $query,array $options=[]): mixed
+    {
+        if(empty($this->methods[$name])) {
+            throw new ApiException($this, 'ObjectApi::execute(): No method "'.$name.'"');
         }
 
         $method=$this->methods[$name]??$name;
 
-        if(!method_exists($this,$method)){
-            throw new ApiException($this,'ObjectApi::execute(): No method "'.$method.'"');
+        if(!method_exists($this, $method)) {
+            throw new ApiException($this, 'ObjectApi::execute(): No method "'.$method.'"');
         }
 
-        return($this->$method($query,$options));
+        return($this->$method($query, $options));
     }
 }

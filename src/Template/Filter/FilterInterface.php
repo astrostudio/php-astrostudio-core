@@ -7,7 +7,7 @@ namespace AstroStudio\Core\Template\Filter;
 interface FilterInterface
 {
     /**
-     * @param T $value
+     * @param T       $value
      * @param mixed[] $options
      *
      * @return bool

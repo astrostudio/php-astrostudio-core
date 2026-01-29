@@ -8,8 +8,9 @@ class ApiException extends Exception
 {
     protected ApiInterface $api;
 
-    public function __construct(ApiInterface $api,$message = "", $code = 0, Throwable $previous = null){
-        parent::__construct($message,$code,$previous);
+    public function __construct(ApiInterface $api,$message = "", $code = 0, Throwable $previous = null)
+    {
+        parent::__construct($message, $code, $previous);
 
         $this->api=$api;
     }

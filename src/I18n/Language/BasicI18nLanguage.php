@@ -11,7 +11,9 @@ class BasicI18nLanguage extends AbstractI18nLanguage
 
     protected ?string $country;
 
-    public function __construct(string $name, ?string $country = null, array $values = []){
+    public function __construct(string $name, ?string $country = null, array $values = [])
+    {
+        $this->set($values);
         $this->name = $name;
         $this->country = $country;
     }
