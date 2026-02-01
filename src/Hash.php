@@ -178,6 +178,7 @@ class Hash
         $data[]=$value;
     }
 
+
     /**
      * @param mixed[]                 $hash
      * @param (string|int)|string|int $path
@@ -218,6 +219,15 @@ class Hash
         }
 
         return $newHash;
+    }
+
+    static public function forget(array $hash = [], array $paths = [], string $separator = self::SEPARATOR): array
+    {
+        foreach($paths as $path){
+            self::remove($hash, $path, $separator);
+        }
+
+        return $hash;
     }
 
 
@@ -557,5 +567,31 @@ class Hash
 
         return $newValueSet;
     }
+
+    static public function agree(mixed $value,array $items=[],$default=null,bool $key=false):mixed
+    {
+        if($key) {
+            if(isset($items[$value])) {
+                return($value);
+            }
+
+            foreach($items as $ikey=>$item){
+                return($ikey);
+            }
+
+            return($default);
+        }
+
+        if(in_array($value, $items)) {
+            return($value);
+        }
+
+        foreach($items as $item){
+            return($item);
+        }
+
+        return($default);
+    }
+
 
 }
