@@ -207,12 +207,13 @@ class Hash
         unset($data);
     }
 
-    static public function leave(array $hash=[],array $keys=[], string $separator = self::SEPARATOR){
+    static public function leave(array $hash=[],array $paths=[], string $separator = self::SEPARATOR)
+    {
         $newHash=[];
 
-        foreach($keys as $key){
-            if(array_key_exists($key,$hash, $separator)){
-                $newHash[$key]=self::get($hash, $key, null, $separator);
+        foreach($paths as $path){
+            if(self::has($hash, $path, $separator)) {
+                $newHash[$path]=self::get($hash, $path, null, $separator);
             }
         }
 

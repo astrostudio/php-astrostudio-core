@@ -6,6 +6,23 @@ use AstroStudio\Core\I18n\I18nTranslatorInterface;
 
 class BasicI18nTranslator implements I18nTranslatorInterface
 {
+    static public function revert(array $languages = []): array
+    {
+        $aliases = [];
+
+        foreach($languages as $language=>$aliases){
+            foreach($aliases as $alias=>$label){
+                if(!array_key_exists($alias, $aliases)) {
+                    $aliases[$alias] = [];
+                }
+
+                $aliases[$alias][$language] = $label;
+            }
+        }
+
+        return $aliases;
+    }
+
     protected array $aliases = [];
 
     public function __construct(array $aliases = [])
@@ -74,9 +91,15 @@ class BasicI18nTranslator implements I18nTranslatorInterface
         $this->aliases[$alias][$language] = $text;
     }
 
-    public function loadAsJson(string $path): void
+    public function loadAsJson(string $path, bool $revert = false): void
     {
-        $this->set(json_decode(file_get_contents($path), true));
+        $data = json_decode(file_get_contents($path), true);
+
+        if($revert) {
+            $data = self::revert($data);
+        }
+
+        $this->set($data);
     }
 
     public function loadAsTsv(string $path): void

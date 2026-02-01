@@ -58,4 +58,29 @@ class I18n
         self::getInstance()->sort($language??self::getLocalizer()->get(), $array, $options);
     }
 
+    static public function translateHash(array $hash = [], string $prefix = '', bool $keys = false): array
+    {
+        $newHash = [];
+
+        foreach($hash as $key=>$value){
+            $newKey = $keys? I18n::get($prefix.$key): $key;
+
+            if(is_array($value)) {
+                $newHash[$newKey] = self::translateHash($value, $prefix, $keys);
+
+                continue;
+            }
+
+            if(is_string($value)) {
+                $newHash[$newKey] = self::get($value);
+
+                continue;
+            }
+
+            $newHash[$newKey] = $value;
+        }
+
+        return $newHash;
+    }
+
 }
