@@ -38,41 +38,54 @@ class I18n
         self::$localizer = $localizer;
     }
 
-    static public function get(string $alias, array $values = [], ?I18nLanguageInterface $language = null, array $options = []): string
+    static public function language(null|string|I18nLanguageInterface $language = null): I18nLanguageInterface
     {
-        return self::getInstance()->get($language??self::getLocalizer()->get(), $alias, $values, $options);
+        if(is_null($language)) {
+            return self::getLocalizer()->get();
+        }
+
+        if(is_string($language)) {
+            return BasicI18nLanguage::create($language);
+        }
+
+        return $language;
     }
 
-    static public function format(mixed $value, string $type, ?I18nLanguageInterface $language = null, array $options = []): string
+    static public function get(string $alias, array $values = [], null|string|I18nLanguageInterface $language = null, array $options = []): string
     {
-        return self::getInstance()->format($language??self::getLocalizer()->get(), $value, $type, $options);
+        return self::getInstance()->get(self::language($language), $alias, $values, $options);
     }
 
-    static public function compare(string $one, string $two, ?I18nLanguageInterface $language = null, array $options = []): int
+    static public function format(mixed $value, string $type, null|string|I18nLanguageInterface $language = null, array $options = []): string
     {
-        return self::getInstance()->compare($language??self::getLocalizer()->get(), $one, $two, $options);
+        return self::getInstance()->format(self::language($language), $value, $type, $options);
     }
 
-    static public function sort(array &$array = [], ?I18nLanguageInterface $language = null, array $options = []): void
+    static public function compare(string $one, string $two, null|string|I18nLanguageInterface $language = null, array $options = []): int
     {
-        self::getInstance()->sort($language??self::getLocalizer()->get(), $array, $options);
+        return self::getInstance()->compare(self::language($language), $one, $two, $options);
     }
 
-    static public function translateHash(array $hash = [], string $prefix = '', bool $keys = false): array
+    static public function sort(array &$array = [], null|string|I18nLanguageInterface $language = null, array $options = []): void
+    {
+        self::getInstance()->sort(self::language($language), $array, $options);
+    }
+
+    static public function translateHash(array $hash = [], string $prefix = '', bool $keys = false, null|string|I18nLanguageInterface $language = null): array
     {
         $newHash = [];
 
         foreach($hash as $key=>$value){
-            $newKey = $keys? I18n::get($prefix.$key): $key;
+            $newKey = $keys? I18n::get($prefix.$key, [], self::language($language)): $key;
 
             if(is_array($value)) {
-                $newHash[$newKey] = self::translateHash($value, $prefix, $keys);
+                $newHash[$newKey] = self::translateHash($value, $prefix, $keys, $language);
 
                 continue;
             }
 
             if(is_string($value)) {
-                $newHash[$newKey] = self::get($value);
+                $newHash[$newKey] = self::get($value, [], self::language($language));
 
                 continue;
             }

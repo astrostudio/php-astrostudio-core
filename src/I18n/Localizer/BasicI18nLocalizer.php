@@ -7,18 +7,6 @@ use AstroStudio\Core\I18n\Language\BasicI18nLanguage;
 
 class BasicI18nLocalizer implements I18nLocalizerInterface
 {
-    static public function create(string $key, array $values = []): BasicI18nLanguage
-    {
-        if(($i = mb_strpos($key, I18nLanguageInterface::SEPARATOR))!== false) {
-            $country = mb_substr($key, $i+mb_strlen(I18nLanguageInterface::SEPARATOR));
-            $country = mb_strlen($country)> 0?$country: null;
-
-            return new BasicI18nLanguage(mb_substr($key, 0, $i), $country, $values);
-        }
-
-        return new BasicI18nLanguage($key, null, $values);
-    }
-
     protected I18nLanguageInterface $language;
 
     public function __construct(I18nLanguageInterface $language)
