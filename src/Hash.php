@@ -207,6 +207,19 @@ class Hash
         unset($data);
     }
 
+    static public function leave(array $hash=[],array $keys=[], string $separator = self::SEPARATOR){
+        $newHash=[];
+
+        foreach($keys as $key){
+            if(array_key_exists($key,$hash, $separator)){
+                $newHash[$key]=self::get($hash, $key, null, $separator);
+            }
+        }
+
+        return $newHash;
+    }
+
+
     /**
      * @param mixed[] $hash
      * @param string  $separator
